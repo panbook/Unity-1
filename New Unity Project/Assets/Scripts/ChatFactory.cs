@@ -5,14 +5,25 @@ using UnityEngine.UI;
 
 public class ChatFactory : MonoBehaviour
 {
+    public DialogData dialog;
+
     public GameObject prefab1;
     public GameObject prefab2;
     public Transform contentTransform;
 
+    //flaga od migającego kursora
+    bool afterWarmup = false;
+    bool isBotIsWriting = false;
+
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        InvokeRepeating("InstantiateChatItem", 1, 3);
+        for (int i = 0; i < dialog.dialogData.Length; i++)
+        {
+            yield return new WaitUntil(() => !isBotIsWriting);
+            InstantiateChatItem(dialog.dialogData[i]);
+        }
+        //InvokeRepeating("InstantiateChatItem", 1, 3);
     }
 
     // Update is called once per frame
@@ -21,34 +32,44 @@ public class ChatFactory : MonoBehaviour
         
     }
 
-    IEnumerator InstantiateChatItemCoroutine(float writeSpeed = 0.2f)
+    IEnumerator InstantiateChatItemCoroutine(BotSentence botSentence)
     {
+        //flaga od migającego kursora
+        afterWarmup = false;
+
+        isBotIsWriting = true;
+
+
         GameObject chatItem = Instantiate(prefab1, contentTransform);
         Text textComponent = chatItem.GetComponentInChildren<Text>();
         yield return null;
-        StartCoroutine(WaitForText(textComponent, 5));
-        // do dokończenia poza lekcją - czekanie na zakończenie korutyny
+        StartCoroutine(WaitForText(textComponent, botSentence.waitTime));
+        yield return new WaitUntil(() => afterWarmup);
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < botSentence.sentence.Length; i++)
         {
-            yield return new WaitForSeconds(writeSpeed);
-            chatItem.GetComponentInChildren<Text>().text += "ab";
+            yield return new WaitForSeconds(botSentence.writingSpeed);
+            chatItem.GetComponentInChildren<Text>().text += botSentence.sentence[i];
         }
+
+        isBotIsWriting = false;
     }
 
-    IEnumerator WaitForText(Text textComponent, int waitCount = 0)
+    IEnumerator WaitForText(Text textComponent, float waitCount = 0)
     {
         for (int i = 0; i < waitCount; i++)
         {
-            textComponent.text = " |";
+            textComponent.text = "|";
             yield return new WaitForSeconds(0.2f);
             textComponent.text = "";
             yield return new WaitForSeconds(0.2f);
         }
+
+        afterWarmup = true;
     }
 
-    void InstantiateChatItem()
+    void InstantiateChatItem(BotSentence botSentence)
     {
-        StartCoroutine(InstantiateChatItemCoroutine());
+        StartCoroutine(InstantiateChatItemCoroutine(botSentence));
     }
 }
