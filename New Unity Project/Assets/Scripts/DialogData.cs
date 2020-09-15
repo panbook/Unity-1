@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu]
 public class DialogData : ScriptableObject
 {
-    public BotSentence [] dialogData;
+    public Sentence [] dialogData;
 }

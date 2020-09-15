@@ -885,6 +885,7 @@ MonoBehaviour:
   dialog: {fileID: 11400000, guid: 13836efec2148c14d8db0329823ad172, type: 2}
   prefab1: {fileID: 3917590217160215031, guid: 2e824ed966fcd224aaac71904781c270, type: 3}
   prefab2: {fileID: 2188990834964998883, guid: 4be6c6e6c308234418f44791094989e3, type: 3}
+  playerAnswer: {fileID: 1382907633017937167, guid: 2da9d90af5c7d0a488bf557dde9e00e5, type: 3}
   contentTransform: {fileID: 1816717004}
 --- !u!4 &1400398886
 Transform:

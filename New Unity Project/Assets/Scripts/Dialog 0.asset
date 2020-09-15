@@ -13,12 +13,33 @@ MonoBehaviour:
   m_Name: Dialog 0
   m_EditorClassIdentifier: 
   dialogData:
-  - waitTime: 0.2
+  - id: 101
+    waitTime: 0.2
     writingSpeed: 0.2
     sentence: Hello
-  - waitTime: 0.2
+    idAnswers: 66000000
+  - id: 102
+    waitTime: 0.2
     writingSpeed: 0.2
-    sentence: fsgsdfgdfsg
-  - waitTime: 0
+    sentence: Who are you
+    idAnswers: c9000000ca000000cb000000
+  - id: 201
+    waitTime: 0
     writingSpeed: 0
-    sentence: 
+    sentence: I'm BOB
+    idAnswers: 2d010000
+  - id: 202
+    waitTime: 0
+    writingSpeed: 0
+    sentence: I'm STEVE
+    idAnswers: 37010000
+  - id: 203
+    waitTime: 0
+    writingSpeed: 0
+    sentence: I'm NOONE
+    idAnswers: 41010000
+  - id: 301
+    waitTime: 0.2
+    writingSpeed: 0.2
+    sentence: IT WORKS
+    idAnswers: 91010000
