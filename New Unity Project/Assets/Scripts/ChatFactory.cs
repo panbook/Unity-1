@@ -21,17 +21,17 @@ public class ChatFactory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
-            //yield return new WaitUntil(() => !isBotIsWriting);
-            InstantiateChatItem(dialog.dialogData[0]);
-        
+
+        //yield return new WaitUntil(() => !isBotIsWriting);
+        InstantiateChatItem(dialog.dialogData[0]);
+
         //InvokeRepeating("InstantiateChatItem", 1, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator InstantiateChatItemCoroutine(Sentence botSentence)
@@ -59,20 +59,39 @@ public class ChatFactory : MonoBehaviour
         {
             //Sentence result = (Sentence)dialog.dialogData.Where<Sentence>(item => item.id == botSentence.idAnswers[0]);
 
-     
+
             InstantiateChatItem(GetSentenceById(botSentence.idAnswers[0]));
         }
 
         if (botSentence.idAnswers.Length > 1)
         {
-            GeneratePlayerAnswers(botSentence.idAnswers[0]);
+            GeneratePlayerAnswers(botSentence);
         }
     }
 
-    private void GeneratePlayerAnswers(int id)
+    private void GeneratePlayerAnswers(Sentence botSentence)
     {
-        GameObject playerAnswerButton = Instantiate(playerAnswer);
-        playerAnswerButton.GetComponentInChildren<Text>().text = GetSentenceById(id).sentence;
+        List<GameObject> answersButtons = new List<GameObject>();
+
+        for (int i = 0; i < botSentence.idAnswers.Length; i++)
+        {
+            GameObject playerAnswerButton = Instantiate(playerAnswer, contentTransform);
+            answersButtons.Add(playerAnswerButton);
+            playerAnswerButton.GetComponentInChildren<Text>().text = GetSentenceById(botSentence.idAnswers[i]).sentence;
+            playerAnswerButton.GetComponentInChildren<Button>().onClick.AddListener(() => playerChoice(answersButtons, i, botSentence));
+        }
+    }
+
+    private void playerChoice(List<GameObject> playerAnswers, int id, Sentence botSentence)
+    {
+        // JAK TO ZROBIĆ?!
+        for (int i = 0; i < playerAnswers.Count; i++)
+        {
+            if (i != id)
+            {
+                Destroy(playerAnswers[i]);
+            }
+        }
     }
 
     Sentence GetSentenceById(int id)
@@ -81,7 +100,6 @@ public class ChatFactory : MonoBehaviour
         {
             if (dialog.dialogData[i].id == id)
             {
-                Debug.Log(dialog.dialogData[i].sentence);
                 return dialog.dialogData[i];
             }
         }

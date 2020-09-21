@@ -15,31 +15,56 @@ MonoBehaviour:
   dialogData:
   - id: 101
     waitTime: 0.2
-    writingSpeed: 0.2
-    sentence: Hello
+    writingSpeed: 0
+    sentence: 101 bot sentence
     idAnswers: 66000000
   - id: 102
     waitTime: 0.2
-    writingSpeed: 0.2
-    sentence: Who are you
+    writingSpeed: 0
+    sentence: 102 bot sentence
     idAnswers: c9000000ca000000cb000000
   - id: 201
     waitTime: 0
     writingSpeed: 0
-    sentence: I'm BOB
+    sentence: 201 player answer
     idAnswers: 2d010000
   - id: 202
     waitTime: 0
     writingSpeed: 0
-    sentence: I'm STEVE
+    sentence: 202 player answer
     idAnswers: 37010000
   - id: 203
     waitTime: 0
     writingSpeed: 0
-    sentence: I'm NOONE
+    sentence: 203 player answer
     idAnswers: 41010000
   - id: 301
     waitTime: 0.2
     writingSpeed: 0.2
-    sentence: IT WORKS
-    idAnswers: 91010000
+    sentence: 301 bot sentence
+    idAnswers: 2e010000
+  - id: 302
+    waitTime: 0.2
+    writingSpeed: 0.2
+    sentence: 302 bot sentence
+    idAnswers: 2e010000
+  - id: 311
+    waitTime: 0.2
+    writingSpeed: 0.2
+    sentence: 311 player answer
+    idAnswers: 2e010000
+  - id: 312
+    waitTime: 0.2
+    writingSpeed: 0.2
+    sentence: 312 bot sentence
+    idAnswers: 2e010000
+  - id: 321
+    waitTime: 0.2
+    writingSpeed: 0.2
+    sentence: 321 bot sentence
+    idAnswers: 2e010000
+  - id: 322
+    waitTime: 0.2
+    writingSpeed: 0.2
+    sentence: 322 bot sentence
+    idAnswers: 2e010000
